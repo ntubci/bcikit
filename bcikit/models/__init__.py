@@ -1,2 +1,2 @@
-# from .EGGNet.CompactEEGNet import CompactEEGNet
+from .MultitaskSSVEP import *
 from .EEGNet import *

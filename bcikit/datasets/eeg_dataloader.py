@@ -18,6 +18,4 @@ class EEGDataloader():
         verbose: bool = False, 
     ) -> None:
 
-        self.data = data.astype(np.float32)
-        self.targets = targets
-        self.channel_names = None
+        pass

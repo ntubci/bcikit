@@ -1,2 +1,2 @@
-from .EEGDataset import EEGDataset
-from .EEGDataloader import EEGDataloader
+from .eeg_dataset import EEGDataset
+from .eeg_dataloader import EEGDataloader

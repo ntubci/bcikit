@@ -1,0 +1,2 @@
+from .MultitaskSSVEP import MultitaskSSVEP
+from .MultitaskSSVEPClassifier import MultitaskSSVEPClassifier
