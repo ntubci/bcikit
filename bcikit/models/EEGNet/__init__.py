@@ -1,0 +1,1 @@
+from .CompactEEGNet import CompactEEGNet
