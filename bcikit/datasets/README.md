@@ -12,7 +12,7 @@ https://academic.oup.com/gigascience/article/8/5/giz002/5304369
 ```python
 from bcikit.datasets.ssvep import OpenBMISSVEP
 dataset = OpenBMISSVEP(root="_data/openbmissvep", subject_id=1, session=1, verbose=True)
-print(dataset.data.shape) # (1, 100, 62, 4000)
+print(dataset.data.shape) # (100, 62, 4000)
 print(dataset.targets)
 ```
 
@@ -24,7 +24,7 @@ https://ieeexplore.ieee.org/document/7740878
 ```python
 from bcikit.datasets.ssvep import HSSSVEP
 dataset = HSSSVEP(root="_data/hsssvep", subject_id=1, verbose=True)
-print(dataset.data.shape) # (1, 240, 64, 1000)
+print(dataset.data.shape) # (240, 64, 1000)
 print(dataset.targets)
 ```
 

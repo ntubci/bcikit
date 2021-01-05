@@ -32,13 +32,11 @@ class HSSSVEP(EEGDataset):
     The continuous EEG data was segmented into 6 s epochs (500 ms pre-stimulus, 5.5 s post-stimulus onset). The epochs were subsequently downsampled to 250 Hz. Thus each trial consisted of 1500 time points. Finally, these data were stored as double-precision floating-point values in MATLAB and were named as subject indices (i.e., S01.mat, ", S35.mat). For each file, the data loaded in MATLAB generate a 4-D matrix named "data" with dimensions of [64, 1500, 40, 6]. The four dimensions indicate "Electrode index", "Time points", "Target index", and "Block index". The electrode positions were saved in a "64-channels.loc" file. Six trials were available for each SSVEP frequency. Frequency and phase values for the 40 target indices were saved in a "Freq_Phase.mat" file.
     Information for all subjects was listed in a "Sub_info.txt" file. For each subject, there are five factors including "Subject Index", "Gender", "Age", "Handedness", and "Group". Subjects were divided into an "experienced" group (eight subjects, S01-S08) and a "naive" group (27 subjects, S09-S35) according to their experience in SSVEP-based BCIs.
     """
-    def __init__(self, root: str, subject_id: int, verbose: bool = False) -> None:
+    def __init__(self, root: str, subject_id: int, verbose: bool = False, **kwargs) -> None:
 
-        self.sample_rate = 250
-        self.data, self.targets, self.channel_names = self._load_data(root, subject_id, verbose)
-
-    def __getitem__(self, n: int) -> Tuple[np.ndarray, int]:
-        return (self.data[n], self.targets[n])
+        sample_rate = 250
+        data, targets, channel_names = self._load_data(root, subject_id, verbose)
+        super().__init__(data, targets, channel_names, sample_rate)
 
     def _load_data(self, root, subject_id, verbose):
 
@@ -60,7 +58,7 @@ class HSSSVEP(EEGDataset):
         # We also cut the signal off after 4 seconds
         # data = np.array(data)[:,:,160:1160]
         data = np.array(data)[:,:,250:1250] # better data quality
-        data = np.expand_dims(data, axis=0) # expand dims from (trial,channel,time) to (session,trial,channel,time)
+        # data = np.expand_dims(data, axis=0) # expand dims from (trial,channel,time) to (session,trial,channel,time)
 
         targets = np.array(targets)
 

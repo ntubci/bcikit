@@ -10,3 +10,9 @@ Coding styles, folder structure, and documentation are inspired by [PyTorch](htt
 - method and function names: should be all lower case
 - constant: must be fully capitalized
 - prefix underscore `_` for local functions and variables
+- we try to avoid adding additional packages. See the `Adding additional packages` section below.
+- remove unnecessary print statements, use `verbose` to print logs for debugging.
+
+## Adding additional packages
+
+We try our best to implement with common packages such as Numpy and packages listed in [requirements.txt](https://github.com/ntubci/bcikit/blob/main/requirements.txt). This reduces packages conflict and makes it easy for installation. But if your implementation requires to use packages not listed in [requirements.txt](https://github.com/ntubci/bcikit/blob/main/requirements.txt), add the package name and version into [requirements.txt](https://github.com/ntubci/bcikit/blob/main/requirements.txt). 

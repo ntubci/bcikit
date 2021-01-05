@@ -22,7 +22,7 @@ class OpenBMISSVEP(EEGDataset):
     
     Usage:
         from bcikit.datasets.ssvep import OpenBMISSVEP
-        dataset = OpenBMISSVEP(root="_data/openbmissvep", subject_id=1, session=1, verbose=True)
+        dataset = OpenBMISSVEP(root="_data/openbmi", subject_id=1, session=1, verbose=True)
         print(dataset.data.shape)
         print(dataset.targets)
 
@@ -30,17 +30,11 @@ class OpenBMISSVEP(EEGDataset):
     Sampling rate: 1000 Hz
     """
 
-    def __init__(self, root: str, subject_id: int, session: int, verbose: bool = False) -> None:
+    def __init__(self, root: str, subject_id: int, session: int, verbose: bool = False, **kwargs) -> None:
 
-        self.sample_rate = 1000
-        self.data, self.targets, self.channel_names = self._load_data(
-            root, subject_id, session, verbose)
-
-    def __getitem__(self, n: int) -> Tuple[np.ndarray, int]:
-        return (self.data[n], self.targets[n])
-
-    def __len__(self) -> int:
-        return len(self.data)
+        sample_rate = 1000
+        data, targets, channel_names = self._load_data(root, subject_id, session, verbose)
+        super().__init__(data, targets, channel_names, sample_rate)
 
     def _load_data(self, root, subject_id, session, verbose):
 
@@ -69,7 +63,7 @@ class OpenBMISSVEP(EEGDataset):
         # channel
         channel_names = [v[0] for v in objects_in_mat[8][0]]
 
-        data = np.expand_dims(data, axis=0) # expand dims from (trial,channel,time) to (session,trial,channel,time)
+        # data = np.expand_dims(data, axis=0) # expand dims from (trial,channel,time) to (session,trial,channel,time)
 
         if verbose:
             print('Load path:', path)
