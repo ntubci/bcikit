@@ -134,4 +134,6 @@ Thumbs.db
 
 # Local folders and files
 /_data
+/_dev
+/_local
 test.py

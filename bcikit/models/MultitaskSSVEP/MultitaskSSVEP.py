@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import torch
 from torch import nn
 from bcikit.models.common.conv import Conv2dBlockELU
