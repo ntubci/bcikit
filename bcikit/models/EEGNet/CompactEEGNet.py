@@ -3,7 +3,7 @@
 """
 import torch
 from torch import nn
-from bcikit.models.common.conv import SeparableConv2d
+from bcikit.models.common.conv2d import SeparableConv2d
 
 
 class CompactEEGNet(nn.Module):

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import torch
 from torch import nn
-from bcikit.models.common.conv import Conv2dBlockELU
+from bcikit.models.common.conv2d import Conv2dBlockELU
 
 
 class MultitaskSSVEP(nn.Module):

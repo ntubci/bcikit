@@ -57,7 +57,7 @@ class HSSSVEP(EEGDataset):
         # We start from 160, because 0.5s Cue + 0.14s (visual latency) as they use phase in stimulus presentation. 0.64*250 = 160
         # We also cut the signal off after 4 seconds
         # data = np.array(data)[:,:,160:1160]
-        data = np.array(data)[:,:,250:1250] # better data quality
+        data = np.array(data)#[:,:,250:1250] # better data quality
         # data = np.expand_dims(data, axis=0) # expand dims from (trial,channel,time) to (session,trial,channel,time)
 
         targets = np.array(targets)
@@ -70,3 +70,41 @@ class HSSSVEP(EEGDataset):
             print('Targets shape', targets.shape)
 
         return data, targets, channel_names
+
+    def recommended_preprocessing(self, 
+                                  data: np.ndarray, 
+                                  targets: np.ndarray, 
+                                  channel_names: [] = None, 
+                                  sample_rate: int = None,
+                                  verbose: bool = False, 
+                                  **kwargs
+                                 ):
+        
+        """
+        To better observe the temporal characters of the SSVEPs, the data were band-pass filtered between 7 Hz and 70 Hz.
+        """
+        from bcikit.transforms.bandpass import butter_bandpass_filter
+        data = butter_bandpass_filter(
+            signal=data, 
+            lowcut=7, 
+            highcut=70, 
+            sample_rate=sample_rate, 
+            order=6
+        )
+        
+        """
+        across nine electrodes over the occipital and parietal areas (PZ, PO5, PO3, POz, PO4, PO6, O1, Oz, and O2
+        """
+        from bcikit.transforms.channels import pick_channels
+        data = pick_channels(
+            data=data, 
+            channel_names=channel_names, 
+            selected_channels=['PZ', 'PO5', 'PO6', 'PO3', 'POz', 'PO4', 'O1', 'Oz', 'O2'],
+        )
+
+        """
+        each trial, six seconds (including 0.5 s before stimulus onset, 5 s for stimulation, and 0.5 s after stimulus offset)
+        """
+        data = data[:,:,:,:,250:1250]
+        
+        return data, targets

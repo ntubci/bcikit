@@ -38,20 +38,32 @@ class EEGDataset(Dataset):
         self.channel_names = channel_names
 
     def __getitem__(self, n: int) -> Tuple[np.ndarray, int]:
-        """
-        Override implementation:
-            ```
-            def __getitem__(self, n: int) -> Tuple[np.ndarray, int]:
-                return (self.data[n], self.targets[n])
-            ```
-        """
         return (self.data[n], self.targets[n])
 
     def __len__(self) -> int:
         return len(self.data)
 
     def _load_data(self, root: str) -> None:
+        """
+        Implement this function in the dataset class to extract data from files.
+        """
         raise NotImplementedError
+                
+    def recommended_preprocessing(self, 
+                                  data: np.ndarray, 
+                                  targets: np.ndarray, 
+                                  channel_names: [] = None, 
+                                  sample_rate: int = None,
+                                  verbose: bool = False, 
+                                  **kwargs: Any
+                                 ):
+        """
+        Implement this function in the dataset class for standard preprocessing described by the dataset paper.
+        `do_recommended_preprocessing=True` in `EEGDataloader` will perform preprocessing.
+        Can use this function as template.
+        """
+        print("recommended_preprocessing not implemented")
+        return data, targets
 
     def set_channel_names(self, channel_names) -> List[str]:
         self.channel_names = channel_names
