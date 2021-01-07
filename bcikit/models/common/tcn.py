@@ -2,6 +2,7 @@
 """TemporalConvNet
 """
 from torch import nn
+from torch.nn.utils import weight_norm
 
 
 class TemporalConvNet(nn.Module):
