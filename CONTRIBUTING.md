@@ -1,6 +1,13 @@
 ## Writing code and documentation
 
-Coding styles, folder structure, and documentation are inspired by [PyTorch](https://github.com/pytorch/pytorch). Like PyTorch, we use [Google style](http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) for formatting docstrings. Preferably, the length of a line inside docstrings block must be limited to 80 characters to fit into Jupyter documentation popups. For naming conventions, read the [Python Naming Conventions](https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html) documentation. For reference, this is a good example, refer to this [code](https://pytorch.org/docs/stable/_modules/torch/nn/modules/conv.html#Conv1d) for this [docstrings](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html#torch.nn.Conv1d)
+Coding styles, folder structure, and documentation are inspired by [PyTorch](https://github.com/pytorch/pytorch). Like PyTorch, we use [Google style](http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html) for formatting docstrings. Preferably, the length of a line inside docstrings block must be limited to 80 characters to fit into Jupyter documentation popups. For naming conventions, read the [Python Naming Conventions](https://visualgit.readthedocs.io/en/latest/pages/naming_convention.html) documentation. 
+
+## Repo for reference
+
+- **docstrings**: refer to this [code](https://pytorch.org/docs/stable/_modules/torch/nn/modules/conv.html#Conv1d) for this [docstrings](https://pytorch.org/docs/stable/generated/torch.nn.Conv1d.html#torch.nn.Conv1d)
+- **functional**: [pytorch](https://github.com/pytorch/pytorch)
+- **functional**: [torchaudio](https://github.com/pytorch/audio/tree/master/torchaudio)
+- **functional**: [sklearn](https://github.com/scikit-learn/scikit-learn/tree/master/sklearn)
 
 ## Important notes
 
@@ -12,6 +19,7 @@ Coding styles, folder structure, and documentation are inspired by [PyTorch](htt
 - prefix underscore `_` for local functions and variables
 - we try to avoid adding additional packages. See the `Adding additional packages` section below.
 - remove unnecessary print statements, use `verbose` to print logs for debugging.
+- show others how to use functions, by providing sample code, executing models and functions with mock data (generate using numpy or pytorch random)
 
 ## Adding additional packages
 
